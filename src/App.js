@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+import Auth from "./components/Pages/Auth";
+import Navbar from "./components/navbar";
+import Home from "./components/Pages/Home";
+import Profile from "./components/Pages/Profile";
+import ProductDetail from "./components/Pages/ProductDetail";
+import AddProduct from "./components/Pages/AddProduct"
+// import Chatbox from "./components/Pages/ChatBox";
+import Chatlist from "./components/Pages/Chatlist"
+import CategoryPage from "./components/Pages/CategoryPage";
+
+
+
+
 
 function App() {
+  const location = useLocation();
+  const hideNavbar = ["/auth"].includes(location.pathname);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {!hideNavbar && <Navbar />}
+      <main className="pt-16">
+        <Routes>
+          <Route path="/" element={<Navigate to="/home" replace />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/product/:category/:id" element={<ProductDetail />} />
+          <Route path="/addproduct" element={<AddProduct />} />
+          {/* <Route path="/chat/:id" element={<Chatbox />} /> */}
+          <Route path="/chat" element={<Chatlist/>} />
+          <Route path="/category/:category" element={<CategoryPage />} />
+        </Routes>
+      </main>
+    </>
   );
 }
 
