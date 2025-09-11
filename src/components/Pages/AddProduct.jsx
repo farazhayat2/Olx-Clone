@@ -29,15 +29,13 @@ export default function AddProduct() {
     products.push(newProduct);
     localStorage.setItem("products", JSON.stringify(products));
 
-    alert("✅ Product added successfully!");
+    alert(" Product added successfully!");
     navigate("/home");
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-purple-50 via-pink-50 to-blue-50 pt-24 pb-12">
-      {/* 🔥 Animated Gradient Border Container */}
       <div className="relative w-full max-w-2xl p-[3px] rounded-2xl bg-gradient-to-r from-pink-500 via-purple-600 to-blue-500 animate-gradient-x shadow-2xl">
-        {/* Inner White Box */}
         <div className="bg-white rounded-2xl p-8">
           <h2 className="text-3xl font-extrabold text-gray-800 mb-6 text-center tracking-wide">
             📦 Post Your Ad
@@ -93,7 +91,6 @@ export default function AddProduct() {
   );
 }
 
-// 🔹 Reusable Input Component
 function InputField({ type, name, placeholder, value, onChange }) {
   return (
     <input

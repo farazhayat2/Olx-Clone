@@ -1,37 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 
-
-/* Center auth container */
+body {
+    font-family: "Montserrat", "sans-serif";
+}
 .auth-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    background: #f5f6fa;
-    font-family: 'Montserrat', sans-serif;
+    min-height: 50vh;
 }
-
-  
-  /* Scoped font */
-  .container, 
-  .container  {
-    font-family: 'Montserrat', sans-serif;
-  }
-
-  /* Force Montserrat inside auth only */
-.container,
-.container,
-.container input,
-.container button {
-  font-family: 'Montserrat', sans-serif !important;
-}
-
-  
 
 .container{
     background-color: #fff;
-    /* background: linear-gradient(to right, #e2e2e2, #c9d6ff); */
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     position: relative;
@@ -39,7 +20,7 @@
     width: 768px;
     max-width: 100%;
     min-height: 480px;
-    
+    font-family: "Montserrat", "sans-serif";
 }
 
 .container p{
@@ -75,7 +56,6 @@
     cursor: pointer;
 }
 
-/* changed selector so it won't conflict with Tailwind's 'hidden' class */
 .container .toggle-btn{
     background-color: transparent;
     border-color: #fff;
@@ -108,6 +88,12 @@
     top: 0;
     height: 100%;
     transition: all 0.6s ease-in-out;
+}
+
+.form-container h1 {
+    font-family: "Montserrat", "sans-serif ";
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 .sign-in{
@@ -170,6 +156,12 @@
     transition: all 0.6s ease-in-out;
     border-radius: 150px 0 0 100px;
     z-index: 1000;
+}
+
+.toggle-container h1 {
+    font-family: "Montserrat", "sans-serif";
+    font-weight: 600;
+    font-size: 1.2rem;
 }
 
 .container.active .toggle-container{

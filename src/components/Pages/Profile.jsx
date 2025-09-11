@@ -8,7 +8,6 @@ import {
 } from "react-icons/fa";
 
 export default function Profile() {
-  // Dummy user data (replace later with real data if needed)
   const userData = {
     username: "john_doe",
     fullName: "John Doe",
@@ -20,11 +19,8 @@ export default function Profile() {
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-purple-50 via-pink-50 to-blue-50 py-12 px-4">
-      {/* 🔥 Animated Gradient Border */}
       <div className="relative w-full max-w-2xl p-[3px] rounded-2xl bg-gradient-to-r from-pink-500 via-purple-600 to-blue-500 animate-gradient-x shadow-2xl">
-        {/* Inner White Card */}
         <div className="bg-white rounded-2xl p-8">
-          {/* Profile Header */}
           <div className="flex items-center gap-6 border-b pb-6 mb-6">
             <FaUserCircle className="text-purple-600 text-7xl drop-shadow-sm" />
             <div>
@@ -51,7 +47,6 @@ export default function Profile() {
             />
           </div>
 
-          {/* Action Button */}
           <div className="mt-8 flex justify-center">
             <button className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white font-semibold rounded-lg hover:from-pink-500 hover:to-purple-600 transform hover:scale-105 transition duration-300 shadow-md">
               ✏️ Edit Profile

@@ -11,8 +11,6 @@ export default function Navbar({ role }) {
         <Link to="/home" className="text-xl font-bold text-black-300">
           🚚 Khareedo
         </Link>
-
-        {/* Desktop links */}
         <nav className="hidden md:flex items-center gap-4">
           <Link to="/chat" className="text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md">
             Chat

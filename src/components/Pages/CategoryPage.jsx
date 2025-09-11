@@ -23,14 +23,14 @@ export default function CategoryPage() {
     fetchCategoryProducts();
   }, [category]);
 
-  // ✅ Filter by price
   const filteredProducts = products.filter((p) => {
     return maxPrice === "" || p.price <= parseInt(maxPrice);
   });
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 flex gap-6">
-      {/* Left Side → Filters */}
+    
+      {/* Left Side Filters */} 
       <div className="w-1/4 bg-white p-4 rounded-lg shadow h-fit">
         <h2 className="font-bold text-lg mb-4">Filters</h2>
 
@@ -59,7 +59,7 @@ export default function CategoryPage() {
         </div>
       </div>
 
-      {/* Right Side → Products */}
+      {/* Right Side Products */}
       <div className="w-3/4">
         <h1 className="text-2xl font-bold capitalize mb-6">{category.replace("-", " ")}</h1>
 

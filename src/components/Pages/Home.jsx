@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CategoryCard from "../CategoryCard";
 import bannerImg from "../../assets/565868639-800x600.webp";
-
 import {
   FaCar,
   FaMobileAlt,
@@ -11,20 +10,20 @@ import {
   FaLaptop,
   FaBriefcase,
 } from "react-icons/fa";
+import Footer from "../footer";
 
 export default function Home() {
   const [search, setSearch] = useState("");
-  const [location, setLocation] = useState(""); // ✅ dropdown location
+  const [location, setLocation] = useState(""); // 
   const [categories, setCategories] = useState({});
 
-  // ✅ Fetch data from DummyJSON API
+  //  Fetch data from DummyJSON API
   useEffect(() => {
     async function fetchProducts() {
       try {
         const res = await fetch("https://dummyjson.com/products?limit=200");
         const data = await res.json();
 
-        // ✅ Group products by category
         const grouped = data.products.reduce((acc, product) => {
           const cat = product.category.toLowerCase().replace(/\s+/g, "-");
           if (!acc[cat]) acc[cat] = [];
@@ -36,7 +35,7 @@ export default function Home() {
             image: product.thumbnail,
             location: ["Karachi", "Lahore", "Islamabad"][
               Math.floor(Math.random() * 3)
-            ], // ✅ assign random fake location
+            ], 
           });
           return acc;
         }, {});
@@ -50,7 +49,6 @@ export default function Home() {
     fetchProducts();
   }, []);
 
-  // ✅ Filtering function (search + location)
   const filterProducts = (products) =>
     products.filter((p) => {
       const matchesSearch =
@@ -65,10 +63,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen w-full bg-gray-100">
-      {/* 🔍 Search + Location strip */}
       <div className="w-full bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center gap-3">
-          {/* Location Dropdown */}
           <select
             value={location}
             onChange={(e) => setLocation(e.target.value)}
@@ -80,7 +76,6 @@ export default function Home() {
             <option value="Islamabad">Islamabad</option>
           </select>
 
-          {/* Search box */}
           <div className="flex items-center w-full md:flex-1 bg-gray-100 border border-gray-300 rounded-full overflow-hidden shadow-sm">
             <input
               type="text"
@@ -96,7 +91,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 🔹 Banner Section */}
+      {/* Banner Section */}
       <div className="w-lg mx-auto px-6 mt-6">
         <div className="w-full rounded-lg overflow-hidden shadow">
           <img
@@ -182,6 +177,9 @@ export default function Home() {
           );
         })}
       </div>
+      <Footer />
     </div>
+
+    
   );
 }

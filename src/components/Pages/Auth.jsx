@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Auth.css"; // keep this import
+import "./Auth.css"; 
 
 export default function Auth() {
   const [active, setActive] = useState(false);
@@ -28,7 +28,7 @@ export default function Auth() {
       {/* Sign In */}
       <div className="form-container sign-in">
         <form>
-          <h1>Sign In</h1>
+          <h1 >Sign In</h1>
           <div class="social-icons">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-google"></i></a>
@@ -38,7 +38,7 @@ export default function Auth() {
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Password" />
           <a href="#">Forgot Your Password?</a>
-          <button type="submit">Sign In</button>
+          <button type="submit">Sign In</button> 
         </form>
       </div>
 
@@ -48,13 +48,12 @@ export default function Auth() {
           <div className="toggle-panel toggle-left">
             <h1>Welcome Back!</h1>
             <p>Enter your personal details to use all of site features</p>
-            {/* changed className from 'hidden' to 'toggle-btn' and added type="button" */}
             <button className="toggle-btn" type="button" onClick={() => setActive(false)}>
               Sign In
             </button>
           </div>
           <div className="toggle-panel toggle-right">
-            <h1>Hello, Friend!</h1>
+            <h1 className = "font-montserrat">Hello, Friend!</h1>
             <p>Register with your personal details to use all of site features</p>
             <button className="toggle-btn" type="button" onClick={() => setActive(true)}>
               Sign Up
@@ -65,4 +64,5 @@ export default function Auth() {
     </div>
     </div>
   );
+  
 }
