@@ -14,26 +14,27 @@ import Footer from "../footer";
 
 export default function Home() {
   const [search, setSearch] = useState("");
-  const [location, setLocation] = useState(""); // 
+  const [location, setLocation] = useState("");
   const [categories, setCategories] = useState({});
 
-  //  Fetch data from DummyJSON API
+  // ✅ Fetch products from your backend (MongoDB)
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const res = await fetch("https://dummyjson.com/products?limit=200");
+        const res = await fetch('http://localhost:3001/user/product'); 
         const data = await res.json();
 
-        const grouped = data.products.reduce((acc, product) => {
-          const cat = product.category.toLowerCase().replace(/\s+/g, "-");
+        // Group products by category
+        const grouped = data.reduce((acc, product) => {
+          const cat = product.category?.toLowerCase().replace(/\s+/g, "-") || "other";
           if (!acc[cat]) acc[cat] = [];
           acc[cat].push({
-            id: product.id,
+            id: product._id, // MongoDB _id
             title: product.title,
             description: product.description,
             price: product.price,
-            image: product.thumbnail,
-            location: ["Karachi", "Lahore", "Islamabad"][
+            image: product.image || "https://via.placeholder.com/300", // fallback
+            location: product.location || ["Karachi", "Lahore", "Islamabad"][
               Math.floor(Math.random() * 3)
             ], 
           });
@@ -42,13 +43,14 @@ export default function Home() {
 
         setCategories(grouped);
       } catch (err) {
-        console.error("Error fetching products:", err);
+        console.error("❌ Error fetching products:", err);
       }
     }
 
     fetchProducts();
   }, []);
 
+  // ✅ Filter search + location
   const filterProducts = (products) =>
     products.filter((p) => {
       const matchesSearch =
@@ -63,6 +65,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen w-full bg-gray-100">
+      {/* 🔎 Search + Location Filter */}
       <div className="w-full bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center gap-3">
           <select
@@ -91,7 +94,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Banner Section */}
+      {/* 🖼️ Banner */}
       <div className="w-lg mx-auto px-6 mt-6">
         <div className="w-full rounded-lg overflow-hidden shadow">
           <img
@@ -102,25 +105,23 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Category Cards */}
+      {/* 📦 Category Cards */}
       <div className="max-w-screen-lg mx-auto px-2 pt-6">
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-4">
-      <CategoryCard title="Smartphones" icon={<FaMobileAlt />} />
-      <CategoryCard title="Laptops" icon={<FaLaptop />} />
-      <CategoryCard title="Fragrances" icon={<FaTshirt />} />
-      <CategoryCard title="Skincare" icon={<FaTshirt />} />
-      <CategoryCard title="Groceries" icon={<FaTshirt />} />
-      <CategoryCard title="Home Decoration" icon={<FaTshirt />} />
-      <CategoryCard title="Furniture" icon={<FaTshirt />} />
-      <CategoryCard title="Mens Shirts" icon={<FaTshirt />} />
-      <CategoryCard title="Mens Shoes" icon={<FaTshirt />} />
-      <CategoryCard title="Womens Dresses" icon={<FaTshirt />} />
-</div>
-</div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-4">
+          <CategoryCard title="Smartphones" icon={<FaMobileAlt />} />
+          <CategoryCard title="Laptops" icon={<FaLaptop />} />
+          <CategoryCard title="Fragrances" icon={<FaTshirt />} />
+          <CategoryCard title="Skincare" icon={<FaTshirt />} />
+          <CategoryCard title="Groceries" icon={<FaTshirt />} />
+          <CategoryCard title="Home Decoration" icon={<FaTshirt />} />
+          <CategoryCard title="Furniture" icon={<FaTshirt />} />
+          <CategoryCard title="Mens Shirts" icon={<FaTshirt />} />
+          <CategoryCard title="Mens Shoes" icon={<FaTshirt />} />
+          <CategoryCard title="Womens Dresses" icon={<FaTshirt />} />
+        </div>
+      </div>
 
-
-
-      {/* Products Sections by Category */}
+      {/* 🛒 Products Section */}
       <div className="max-w-6xl mx-auto px-6 py-8">
         {Object.keys(categories).map((catKey) => {
           const filteredProducts = filterProducts(categories[catKey]);
@@ -179,7 +180,5 @@ export default function Home() {
       </div>
       <Footer />
     </div>
-
-    
   );
 }

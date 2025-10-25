@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import { createProduct } from "../features/product/productAction";
 export default function AddProduct() {
   const [formData, setFormData] = useState({
     title: "",
@@ -11,6 +12,7 @@ export default function AddProduct() {
   });
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,13 +26,16 @@ export default function AddProduct() {
       return;
     }
 
-    let products = JSON.parse(localStorage.getItem("products")) || [];
-    const newProduct = { id: Date.now(), ...formData };
-    products.push(newProduct);
-    localStorage.setItem("products", JSON.stringify(products));
-
-    alert(" Product added successfully!");
-    navigate("/home");
+    dispatch(createProduct(formData))
+      .unwrap()
+      .then(() => {
+        alert("✅ Product added successfully!");
+        navigate("/home");
+      })
+      .catch((err) => {
+        console.error("Error adding product:", err);
+        alert("❌ Failed to add product.");
+      });
   };
 
   return (
@@ -42,27 +47,9 @@ export default function AddProduct() {
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-5">
-            <InputField
-              type="text"
-              name="title"
-              placeholder="Product Title"
-              value={formData.title}
-              onChange={handleChange}
-            />
-            <InputField
-              type="text"
-              name="category"
-              placeholder="Category"
-              value={formData.category}
-              onChange={handleChange}
-            />
-            <InputField
-              type="text"
-              name="image"
-              placeholder="Image URL"
-              value={formData.image}
-              onChange={handleChange}
-            />
+            <InputField type="text" name="title" placeholder="Product Title" value={formData.title} onChange={handleChange} />
+            <InputField type="text" name="category" placeholder="Category" value={formData.category} onChange={handleChange} />
+            <InputField type="text" name="image" placeholder="Image URL" value={formData.image} onChange={handleChange} />
             <textarea
               name="description"
               placeholder="Description"
@@ -70,13 +57,7 @@ export default function AddProduct() {
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-lg p-3 h-28 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
             />
-            <InputField
-              type="number"
-              name="price"
-              placeholder="Price"
-              value={formData.price}
-              onChange={handleChange}
-            />
+            <InputField type="number" name="price" placeholder="Price" value={formData.price} onChange={handleChange} />
 
             <button
               type="submit"
