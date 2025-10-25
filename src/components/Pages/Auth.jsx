@@ -18,7 +18,9 @@ export default function Auth() {
             <a href="#" className="icon"><i className="fa-brands fa-linkedin-in"></i></a>
           </div>
           <span>or use your email password</span>
-          <input type="text" placeholder="Name" />
+          <input type="text" placeholder="FirstName" />
+          <input type="text" placeholder="LastName" />
+          <input type="text" placeholder="Phone" />
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Password" />
           <button type="submit">Sign Up</button>
@@ -39,6 +41,7 @@ export default function Auth() {
           <input type="password" placeholder="Password" />
           <a href="#">Forgot Your Password?</a>
           <button type="submit">Sign In</button> 
+         
         </form>
       </div>
 
@@ -62,6 +65,7 @@ export default function Auth() {
         </div>
       </div>
     </div>
+  
     </div>
   );
   

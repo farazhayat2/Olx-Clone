@@ -24,6 +24,10 @@ export default function Navbar({ role }) {
             Login / Register
           </Link>
 
+          <Link to="/auth" className="text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md">
+            Logout
+          </Link>
+
           <Link to="/addproduct" className="text-white bg-blue-500 hover:bg-blue-400 px-4 py-2 rounded-md">
             Sell
           </Link>
